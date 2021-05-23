@@ -118,7 +118,6 @@ struct Tester {
     func unwrap(optional: String?) -> String {
         guard let value = optional else { fatalError("Error") }
         return value
-        
     }
     
     /// Unwrap using nil coalescing

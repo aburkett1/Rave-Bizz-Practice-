@@ -68,7 +68,7 @@ class collectionsTests: XCTestCase {
     
     
     func testFindPairs() throws {
-        let input = [1, -1, 2, 3, -1, -2, -4]
+        let input = [1, 2, 3, -1, -2, -4]
         let expected = 2
     
         let result = tester.findPairs(nums: input)

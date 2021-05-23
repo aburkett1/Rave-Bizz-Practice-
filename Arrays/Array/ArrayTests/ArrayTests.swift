@@ -4,6 +4,10 @@
 //
 //  Created by Luat on 5/19/21.
 //
+<<<<<<< HEAD
+=======
+
+>>>>>>> aaee6bb3b2a0e0de8f61aee3f75d2bf662706263
 import XCTest
 @testable import Array
 
