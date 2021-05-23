@@ -152,7 +152,16 @@ class Tester {
             -> [1, 2, 3, 2]
      */
     func reduceDistanceKeepPriority(array: [Int]) -> [Int] {
+        var prioritiesSet: Set<Int> = []
+        for ele in array {
+            prioritiesSet.insert(ele)
+        }
+        let sortedPriorities = prioritiesSet.sorted()
         
-        return []
+        var result: [Int] = []
+        for i in 0..<array.count {
+            result.append(sortedPriorities.firstIndex(of: array[i])! + 1)
+        }
+        return result
     }
 }

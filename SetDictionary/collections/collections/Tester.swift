@@ -89,47 +89,66 @@ struct Tester {
     
     // O(n) time
     func findPairs(nums: [Int]) -> Int {
-
-      return 0
+        var result = 0
+        var pairsSet: Set<Int> = []
+        for ele in nums {
+            pairsSet.insert(ele)
+        }
+        for ele in pairsSet {
+            if pairsSet.contains(-ele) {
+                result += 1
+                pairsSet.remove(ele)
+            }
+        }
+      return result
     }
     
     
     /// Optionals
     /// Unwrap using optional binding: if let
     func unwrap(optional: Int?) -> Int {
-        return 0
+        if let value = optional {
+            return value
+        } else {
+            return -1
+        }
     }
     
     /// Unwrap using optional binding: guard let
     func unwrap(optional: String?) -> String {
-        return ""
+        guard let value = optional else { fatalError("Error") }
+        return value
+        
     }
     
     /// Unwrap using nil coalescing
     // takes optional array, return first value?
     func unwrap(optional: [Int]?) -> Int {
-        
-        return 0
+        let unwrapped = optional?.first ?? -1
+        return unwrapped
     }
-    
     /// Unwrap using nil coalescing
     // takes optional dictionary, return value at key?
     func unwrap(optional: [Int: Int]?, key: Int?) -> Int {
-        
-        return 0
+        let unwrappedKey = key ?? -1
+        let unwrappedValue = optional?[unwrappedKey] ?? -1
+        return unwrappedValue
     }
     
     /// Unwrap using optional chaining and optional binding
     // takes nested optional array, return first value?
     func unwrap(optional: [[Int]?]?) -> Int {
-        
-        return 0
+        if let unwrapped = optional?.first??.first {
+            return unwrapped
+        } else {
+            return -1
+        }
     }
     
     /// Unwrap using implicitly unwrap
     func implicitUnwrap(optional: Int?) -> Int {
-        
-        return 0
+        let unwrapped: Int! = optional
+        return unwrapped
     }
     
 }
