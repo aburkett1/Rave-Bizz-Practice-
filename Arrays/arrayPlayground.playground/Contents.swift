@@ -4,13 +4,10 @@ import UIKit
 let myNum = 4 //Int
 // creating a double from an Int
 let myDouble = Double(myNum) // creates 4.0 from 4
-
 let dividedNum = myNum / 3 // 4/3 = 1
 let dividedDouble = Double(myNum) / 3.0 // 4.0/3.0 = 1.3333
-
 let intThree = 3
 //let dividedDouble = Double(myNum) / intThree // can't do this
-
 let remainder = myNum % 3
 print(Int.max)
 print("8", Int8.max) // 2^7 - 1
@@ -35,7 +32,6 @@ if type(of: simple) == [Int].self {
 //simple.append("7")
 //let double: Double = 5.0
 //print(Int.max)
-
 for count in 0...3 {
     print(simple[count])
 }
@@ -78,20 +74,12 @@ print(createdArray)
 let mappedArray = createdArray.map({ value in
     return value * 2
 })
-<<<<<<< HEAD
-/// same as mapped
-=======
 /// same as above
 /// 1)
->>>>>>> aaee6bb3b2a0e0de8f61aee3f75d2bf662706263
 var newArray: [Int] = []
 for value in createdArray {
     newArray.append(value * 2)
 }
-<<<<<<< HEAD
-print(mappedArray)
-print(newArray)
-=======
 /// 2)
 let myClosure01: (Int) -> Int = { value in
     return value * 2
@@ -136,7 +124,6 @@ let intClosure: (Int) -> Void = { purpleUnicorn in
 intClosure(10)
 
 //let myDictionary: [String: String] = [:]
-
 let myFuncClosure: (Int) -> Void = { num in
     print("Inside of a closure \(num)")
 }
@@ -215,4 +202,3 @@ let sumThree = mySimpleArray.reduce(1, {$0 * $1})
 print("three", sumThree)
 
 
->>>>>>> aaee6bb3b2a0e0de8f61aee3f75d2bf662706263

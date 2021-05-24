@@ -12,43 +12,29 @@ class Tester {
     
     // MARK: - QUESTIONS
     /// 1. Write a function that takes an array of numbers and returns an array with each of the numbers multiplied by 2
-<<<<<<< HEAD
     func multiplyByTwo(numbers: [Int]) -> [Int]{
         return numbers.map({ num in
             return num * 2
         })
-=======
-    func multiplyByTwo(numbers original: [Int]) -> [Int]{
-
-      return []
->>>>>>> aaee6bb3b2a0e0de8f61aee3f75d2bf662706263
     }
 
     /// 2. Write a function to return the last half of the array, not including the median
     func lastHalf(array: [Int]) -> [Int] {
-<<<<<<< HEAD
         var newArr: [Int] = []
         for position in Int(ceil(Double(array.count)/2))..<array.count {
             newArr.append(array[position])
         }
         
         return newArr
-=======
-        return []
->>>>>>> aaee6bb3b2a0e0de8f61aee3f75d2bf662706263
     }
 
     /// 3. Write a function that can creates an array populated with integers going from start (input) to end (input)
     func createArray(from start: Int, to end: Int) -> [Int] {
-<<<<<<< HEAD
         var result: [Int] = []
         for ele in start...end {
             result.append(ele)
         }
         return result
-=======
-      return []
->>>>>>> aaee6bb3b2a0e0de8f61aee3f75d2bf662706263
     }
 
 
@@ -59,19 +45,14 @@ class Tester {
         [7,8,9]]
      */
     func create2DArray() -> [[Int]] {
-<<<<<<< HEAD
       return [[1,2,3],
               [4,5,6],
               [7,8,9]]
-=======
-      return []
->>>>>>> aaee6bb3b2a0e0de8f61aee3f75d2bf662706263
     }
 
     /// 6. Write a function that returns the number of pairs of elements that sums up to 0
     /// Input [1,2,3,-1,-2,-4] -> Output 2
     func findPairs(nums: [Int]) -> Int {
-<<<<<<< HEAD
         var pairs = 0
         for i in 0..<nums.count {
             for j in i+1..<nums.count {
@@ -126,21 +107,6 @@ class Tester {
         }
         
         return result
-=======
-
-      return 0
-    }
-
-    //  "hello world"  -> "ellohay orldway"
-    func printPigLatinSentence(sentence: String) -> String {
-
-        return ""
-    }
-    
-    func positionOf(character: Character, in word: String) -> [Int] {
-
-        return []
->>>>>>> aaee6bb3b2a0e0de8f61aee3f75d2bf662706263
     }
     
     /*
@@ -150,7 +116,6 @@ class Tester {
         Output: max chairs required
      */
     func minimumChairs(array: [Character]) -> Int {
-<<<<<<< HEAD
         var currNumOfChairs = 0
         var minimumChairsNeeded = 0
         for i in 0..<array.count {
@@ -164,20 +129,12 @@ class Tester {
             }
         }
         return minimumChairsNeeded
-=======
-        return 0
-    }
-    
-    func pigLatinSentence(sentence: String) -> String {
-        return ""
->>>>>>> aaee6bb3b2a0e0de8f61aee3f75d2bf662706263
     }
     
     /** Find the best day to first BUY and then a day occuring after that day to SELL. Return the maximum profit ( buy price - sell price)
         var prices = [7,1,5,3,6,4]  //returns 5
      */
     func maxProfit(array: [Int]) -> Int {
-<<<<<<< HEAD
         var maxProfit = 0
         for i in 0..<array.count {
             for j in i+1..<array.count {
@@ -187,10 +144,6 @@ class Tester {
             }
         }
         return maxProfit
-=======
-        
-        return 0
->>>>>>> aaee6bb3b2a0e0de8f61aee3f75d2bf662706263
     }
     
     /**
@@ -199,7 +152,6 @@ class Tester {
             -> [1, 2, 3, 2]
      */
     func reduceDistanceKeepPriority(array: [Int]) -> [Int] {
-<<<<<<< HEAD
         var prioritiesSet: Set<Int> = []
         for ele in array {
             prioritiesSet.insert(ele)
@@ -211,9 +163,5 @@ class Tester {
             result.append(sortedPriorities.firstIndex(of: array[i])! + 1)
         }
         return result
-=======
-        
-        return []
->>>>>>> aaee6bb3b2a0e0de8f61aee3f75d2bf662706263
     }
 }
