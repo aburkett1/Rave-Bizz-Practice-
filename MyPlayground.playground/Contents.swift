@@ -59,9 +59,39 @@ let firstArry: [Any] = [
 
 //for let, you cannot mutate an array in any way
 let simple = [1,2,3,4]
-simple.append(5) //can't
-simple[0] = 10 //can't
+//simple.append(5) //can't
+//simple[0] = 10 //can't
 
 
 //Functions
 
+
+
+//Enums
+
+enum Temperature {
+    case fahrenheit(Int)
+    case celcius(Int)
+    case kelvin(Int)
+}
+
+let myTemp = Temperature.fahrenheit(70)
+let myTemp2 = Temperature.fahrenheit(100)
+
+switch myTemp {
+case .fahrenheit(let temp):
+    print(temp)
+case .celcius(_):
+    print("n/a")
+case .kelvin(_):
+    print("n/a")
+}
+
+switch myTemp2 {
+case .fahrenheit(let temp):
+    print(temp)
+case .celcius(_):
+    print("n/a")
+case .kelvin(_):
+    print("n/a")
+}
