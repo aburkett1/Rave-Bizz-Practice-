@@ -46,6 +46,20 @@ class ViewController: UIViewController {
     }
     
     /// All these functions are very similar...
+    func getJokesFromAPI(completion: @escaping (JokeResponse) -> Void) {
+        let url = URL(string: Constants.jokeAddress)!
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data else { fatalError() }
+            
+            let decoder = JSONDecoder()
+            let decodedDrinks = try! decoder.decode(JokeResponse.self, from: data)
+            
+            completion(decodedDrinks)
+            
+        }
+        task.resume()
+    }
+    
     func getShows() -> ShowResponse? {
         /// Getting path to file
         let bundlePath = Bundle.main.path(forResource: "ShowResponse", ofType: "json")
@@ -124,5 +138,9 @@ class ViewController: UIViewController {
             return nil
         }
     }
+}
+
+enum CustomError {
+    case noData
 }
 

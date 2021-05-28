@@ -91,3 +91,6 @@ class ViewController: UIViewController {
     
 }
 
+struct Joke: Decodable {
+    let value: String
+}
