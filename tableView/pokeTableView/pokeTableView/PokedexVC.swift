@@ -14,68 +14,37 @@ class PokedexVC: UIViewController {
     var pokedexModel: PokedexModel? {
         didSet {
             DispatchQueue.main.async {
+                (self.myDataSource as?  PokedexDataSource)?.update(model: self.pokedexModel)
                 self.tableView.reloadData()
             }
         }
     }
     
+    var myDataSource: UITableViewDataSource!
+    var myDelegate = PokedexDelegate()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureTableView()
         APIManager.shared.getPokedexData { decodedModel in
             self.pokedexModel = decodedModel
         }
+        configureTableView()
     }
     
     func configureTableView() {
-        tableView.dataSource = self
-        tableView.delegate = self
+        myDataSource = PokedexDataSource(model: pokedexModel)
+        tableView.dataSource = myDataSource
+        
+        myDelegate.controllerDelegate = self
+        tableView.delegate = myDelegate
+        
         let nib = UINib(nibName: PokemonCell.identifier, bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: PokemonCell.identifier)
     }
     
     deinit {
-        print("music VC deinit")
+        print("PokedexVC deinit")
     }
-    
     
 }
 
-
-extension PokedexVC: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return pokedexModel?.results.count ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: PokemonCell.identifier, for: indexPath) as? PokemonCell else {
-            let cell = UITableViewCell()
-            cell.textLabel?.text = "Not Valid PokeCell"
-            return cell
-            
-        }
-        cell.pokemonLabel.text = (pokedexModel?.results[indexPath.row].name.dropLast(pokedexModel!.results[indexPath.row].name.count - 1).capitalized)! + (pokedexModel?.results[indexPath.row].name.dropFirst(1))!
-        return cell
-    }
-}
-
-extension PokedexVC: UITableViewDelegate {
-    // Delegate
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let vc = storyboard?.instantiateViewController(identifier: "PokemonDetailsVC") else {
-            return
-        }
-        APIManager.shared.getPokemonData(id: indexPath.row) { decodedModel in
-            PokemonDetailsVC.shared.pokemonModel = decodedModel
-            APIManager.shared.getPokemonImage(pokemonDetails: decodedModel) { imageData in
-                PokemonDetailsVC.shared.pokemonImageData = imageData
-            }
-            
-        }
-        navigationController?.pushViewController(vc, animated: true)
-    }
-}
