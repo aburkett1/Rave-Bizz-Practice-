@@ -14,23 +14,29 @@ class PokemonDetailsVC: UIViewController {
     @IBOutlet weak var pokemonImageView: UIImageView!
     @IBOutlet weak var pokemonLabel: UILabel!
     
-    var pokemonModel: PokemonDetails?
-    var pokemonImageData: UIImage?
+    var pokemonInfo: PokemonDetails?
+    var pokemonImage: UIImage?
     
     func configure(pokemonDetails: PokemonDetails, image: UIImage) {
-        pokemonLabel.numberOfLines = 0
+        pokemonInfo = pokemonDetails
+        pokemonImage = image
+    }
+    
+    func updateUI() {
+        guard let pokemon = pokemonInfo else { return }
+        pokemonLabel?.numberOfLines = 0
         var pokemonType: String
-        if pokemonDetails.types.count == 2 {
-            pokemonType = pokemonDetails.types[0].type.name.capitalized + " / " + pokemonDetails.types[1].type.name.capitalized
+        if pokemon.types.count == 2 {
+            pokemonType = pokemon.types[0].type.name.capitalized + " / " + pokemon.types[1].type.name.capitalized
         } else {
-            pokemonType = pokemonDetails.types[0].type.name.capitalized
+            pokemonType = pokemon.types[0].type.name.capitalized
         }
         pokemonLabel?.text = """
-            Name: \(pokemonDetails.name.capitalized)
-            Weight: \("\(Double(pokemonDetails.weight) / 10) kg")
+            Name: \(pokemon.name.capitalized)
+            Weight: \("\(Double(pokemon.weight) / 10) kg")
             Type: \(pokemonType)
             """
-        pokemonImageView?.image = image
+        pokemonImageView?.image = pokemonImage
         
         let typeColor: [String: UIColor] = [
             "Bug": UIColor(hex: "#96a717")!,
@@ -52,17 +58,12 @@ class PokemonDetailsVC: UIViewController {
             "Steel": UIColor(hex: "#a9abb5")!,
             "Water": UIColor(hex: "#308de8")!,
         ]
-        pokemonSubView.backgroundColor = typeColor[pokemonDetails.types[0].type.name.capitalized]
+        pokemonSubView?.backgroundColor = typeColor[pokemon.types[0].type.name.capitalized]
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-    
-    func configure() {
-        pokemonLabel.text = pokemonModel?.name
-        pokemonImageView.image = pokemonImageData
+        updateUI()
     }
     
 }

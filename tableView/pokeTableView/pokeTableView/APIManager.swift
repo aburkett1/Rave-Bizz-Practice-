@@ -11,7 +11,7 @@ class APIManager {
     
     static let shared = APIManager()
     
-    func getPokedexData(completion: ((PokedexModel) -> Void)?) {
+    func getPokedexData<T: Codable>(completion: ((T?) -> Void)?) {
         guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon?limit=151") else {
             print("Pokedex URL is not Valid")
             return
@@ -29,8 +29,8 @@ class APIManager {
             }
             do {
                 let decodedPokedex = try JSONDecoder().decode(PokedexModel.self, from: data)
-                print(decodedPokedex)
-                completion?(decodedPokedex)
+                completion?(decodedPokedex as? T)
+                try? DiskCacheManager().cache(item: decodedPokedex)
             } catch (let error) {
                 print(error.localizedDescription)
             }
@@ -56,7 +56,6 @@ class APIManager {
             }
             do {
                 let decodedPokemon = try JSONDecoder().decode(PokemonDetails.self, from: data)
-                print(decodedPokemon)
                 completion?(decodedPokemon)
                 
             } catch (let error) {
@@ -79,6 +78,7 @@ class APIManager {
                 return
             }
             completion?(UIImage(data: data))
+//            completion?(data)
         }
         taskGetImage.resume()
     }

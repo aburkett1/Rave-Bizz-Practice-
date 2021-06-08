@@ -20,12 +20,10 @@ class PokedexDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("Inside Number of Rows", section)
         return pokedexModel?.results.count ?? 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("Inside PokedexDataSource")
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PokemonCell.identifier, for: indexPath) as? PokemonCell else {
             let cell = UITableViewCell()
             cell.textLabel?.text = "Not Valid PokeCell"

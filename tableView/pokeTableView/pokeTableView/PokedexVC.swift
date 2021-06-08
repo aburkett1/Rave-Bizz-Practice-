@@ -25,10 +25,20 @@ class PokedexVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        APIManager.shared.getPokedexData { decodedModel in
-            self.pokedexModel = decodedModel
-        }
+        fetchPokedexData()
         configureTableView()
+    }
+    
+    func fetchPokedexData() {
+        if let data = DiskCacheManager().read() {
+            if let model = try? JSONDecoder().decode(PokedexModel.self, from: data) {
+                self.pokedexModel = model
+            }
+        } else {
+            APIManager.shared.getPokedexData { decodedModel in
+                self.pokedexModel = decodedModel
+            }
+        }
     }
     
     func configureTableView() {

@@ -7,32 +7,32 @@
 
 import Foundation
 
-struct PokemonDetails: Decodable {
+struct PokemonDetails: Codable {
     let name: String
     let weight: Int
     let sprites: Sprites
     let types: [PokemonTypes]
 }
 
-struct Sprites: Decodable {
+struct Sprites: Codable {
     let other: Other
 }
 
-struct Other: Decodable {
+struct Other: Codable {
     enum CodingKeys: String, CodingKey {
         case artwork = "official-artwork"
     }
     let artwork: Image
 }
 
-struct Image: Decodable {
+struct Image: Codable {
     let front_default: String
 }
 
-struct PokemonTypes: Decodable {
+struct PokemonTypes: Codable {
     let type: TypeDetails
 }
 
-struct TypeDetails: Decodable {
+struct TypeDetails: Codable {
     let name: String
 }
