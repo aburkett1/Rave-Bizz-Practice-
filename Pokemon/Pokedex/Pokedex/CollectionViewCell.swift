@@ -8,6 +8,12 @@
 import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
+    
+    static let identifier = "CollectionViewCell"
+    
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var label: UILabel!
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()

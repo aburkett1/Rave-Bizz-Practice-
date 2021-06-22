@@ -42,7 +42,6 @@ struct DiskCacheManager {
     func read() -> Data? {
         let fileUrl = DiskCacheManager.cacheDirectory.appendingPathComponent(cacheFileName)
         if let data = try? Data(contentsOf: fileUrl) {
-            print("success: reading from cache")
             return data
         }
         return nil

@@ -7,11 +7,13 @@
 
 import Foundation
 
-struct PokemonDetails: Codable {
+struct Pokemon: Codable {
     let name: String
-    let weight: Int
+    let height: Double
+    let weight: Double
     let sprites: Sprites
     let types: [PokemonTypes]
+    let stats: [Stats]
 }
 
 struct Sprites: Codable {
@@ -34,5 +36,14 @@ struct PokemonTypes: Codable {
 }
 
 struct TypeDetails: Codable {
+    let name: String
+}
+
+struct Stats: Codable {
+    let base_stat: Float
+    let stat: Stat
+}
+
+struct Stat: Codable {
     let name: String
 }
